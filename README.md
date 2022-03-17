@@ -26,7 +26,7 @@ var config = {
             position: "top_center",
             config: {
                 updateInterval: 600000,
-                minPoke: 4,
+                minPoke: 1,
                 maxPoke: 151,
                 grayscale: true,
                 showType: true,
