@@ -12,11 +12,11 @@ Module.register("MMM-DailyPokemon", {
     updateInterval: 86400000, // 1 Day
     grayscale: true, // Turns pokemon image and type images gray to match magic mirror styles
     minPoke: 1, // Default to all pokemon
-    maxPoke: 802, // Highest number - 802 pokemon currently exist
+    maxPoke: 898, // Highest number - 898 pokemon currently exist, includes gen 8
     showType: true, // Shows type icons below pokemon's image
     stats: true, // Displays pokemon stat table
     language: "en",
-    genera: true, // Sub-description for the pokemon
+    genera: true, // Sub-description for the Pokemon
     gbaMode: true, // Changes font to GBA style
     nameSize: 32, // Changes header size - px
     flavorText: false // Displays flavor text for the pokemon
@@ -25,34 +25,36 @@ Module.register("MMM-DailyPokemon", {
   requiresVersion: "2.1.0", // Required version of MagicMirror
 
   start: function () {
-    //Setting up interval for refresh
     var self = this
 
+    // Setting up interval for refresh
     setInterval(function () {
       self.updateDom()
     }, this.config.updateInterval)
   },
 
   getDom: function () {
-    //Creating initial div
+    // Creating initial div
     var wrapper = document.createElement("div")
     wrapper.id = "poke-wrapper"
+
     if (this.config.stats === true) {
       wrapper.style.width = "400px"
     } else {
       wrapper.style.width = "200px"
     }
+
     var header = document.createElement("h4")
     header.innerHTML = "Daily Pokemon"
     header.id = "poke-header"
 
     //wrapper.appendChild(header);
-    this.getData(wrapper) //Sending the request
+    this.getData(wrapper) // Sending the request
     return wrapper
   },
 
   getData: function (wrapper) {
-    //Sends XHTTPRequest
+    // Sends XHTTPRequest
     var self = this
     var pokeNumber = Math.round(
       Math.random() * (this.config.maxPoke - this.config.minPoke) +
@@ -102,7 +104,9 @@ Module.register("MMM-DailyPokemon", {
               return obj.language.name == languageChosen
             }
             // get first flavor text matching selected language
-            var flavorTextObj = response.flavor_text_entries.find(checkLanguage)
+            var flavorTextObj = response.flavor_text_entries.find(
+              (pokedexEntry) => pokedexEntry.language.name === languageChosen
+            )
             // remove carriage returns, newlines, form-feeds for clean display
             var sanitizedText = flavorTextObj.flavor_text.replace(/\r\n/g, "")
             sanitizedText = sanitizedText.replace(/\f/g, " ")
@@ -133,7 +137,7 @@ Module.register("MMM-DailyPokemon", {
   },
 
   createContent: function (data, wrapper) {
-    //Creates the elements for display
+    // Creates the elements for display
     var pokeWrapper = document.createElement("div")
     pokeWrapper.id = "poke-info"
     var flexWrapper = document.createElement("div")
@@ -155,7 +159,7 @@ Module.register("MMM-DailyPokemon", {
         pokeName.style.cssText = "font-size:" + this.config.nameSize + "px;"
       }
     } else if (this.config.nameSize == 32) {
-      //Changing default size if gbaMode is enabled without size changes added
+      // Changing default size if gbaMode is enabled without size changes added
       if (this.config.gbaMode) {
         pokeName.style.cssText = "font-size: 22px; font-family: 'pokegb';"
       }
