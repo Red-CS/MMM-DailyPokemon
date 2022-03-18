@@ -1,5 +1,10 @@
 {
   "TITLE": "Titulo",
   "UPDATE": "Actualización",
-  "_todo": "Update Spanish translations"
+  "hp": "PS",
+  "attack": "ATAQUE",
+  "defense": "DEFENSA",
+  "special-attack": "ATQ.SPE.",
+  "special-defense": "DEF.SPE.",
+  "speed": "Velocidad"
 }
