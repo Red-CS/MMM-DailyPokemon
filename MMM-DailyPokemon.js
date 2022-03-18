@@ -9,17 +9,17 @@
 
 Module.register("MMM-DailyPokemon", {
   defaults: {
-    updateInterval: 86400000, //1 Day
-    grayscale: true, //Turns pokemon image and type images gray to match magic mirror styles
-    minPoke: 1, //Default to all pokemon
-    maxPoke: 802, //Highest number - 802 pokemon currently exist
-    showType: true, //Shows type icons below pokemon's image
-    stats: true, //Displays pokemon stat table
+    updateInterval: 86400000, // 1 Day
+    grayscale: true, // Turns pokemon image and type images gray to match magic mirror styles
+    minPoke: 1, // Default to all pokemon
+    maxPoke: 802, // Highest number - 802 pokemon currently exist
+    showType: true, // Shows type icons below pokemon's image
+    stats: true, // Displays pokemon stat table
     language: "en",
-    genera: true, //Sub-description for the pokemon
-    gbaMode: true, //Changes font to GBA style
-    nameSize: 32, //Changes header size - px
-    flavorText: false //Displays flavor text for the pokemon
+    genera: true, // Sub-description for the pokemon
+    gbaMode: true, // Changes font to GBA style
+    nameSize: 32, // Changes header size - px
+    flavorText: false // Displays flavor text for the pokemon
   },
 
   requiresVersion: "2.1.0", // Required version of MagicMirror
