@@ -214,8 +214,7 @@ Module.register("MMM-DailyPokemon", {
       var statTable = document.createElement("table")
       if (this.config.gbaMode) statTable.style.cssText = "font-family: 'pokegb'"
 
-      for (let i = 5; i >= 0; i--) {
-        //Inverted to list stats in right order
+      for (let i = 0; i <= 5; i++) {
         let tr = document.createElement("tr")
         let tdName = document.createElement("td")
         let tdStat = document.createElement("td")
