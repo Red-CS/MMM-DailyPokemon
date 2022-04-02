@@ -1,5 +1,3 @@
-/* global Module */
-
 /* Magic Mirror
  * Module: MMM-DailyPokemon
  *
@@ -70,13 +68,13 @@ Module.register("MMM-DailyPokemon", {
     var languageChosen = this.config.language
 
     languageHttpRequest.onreadystatechange = function () {
-      if (this.readyState == 4 && this.status == 200) {
+      if (this.readyState === 4 && this.status === 200) {
         var response = JSON.parse(this.responseText)
         Log.log(response)
 
         if (self.config.genera) {
           response.genera.forEach((genera) => {
-            if (genera.language.name == languageChosen) {
+            if (genera.language.name === languageChosen) {
               var pokeSubName = document.getElementById("poke-subname")
               pokeSubName.innerHTML = genera.genus
             }
@@ -86,7 +84,7 @@ Module.register("MMM-DailyPokemon", {
         // Get Translated Name and Flavor Text
         if (languageChosen) {
           response.names.forEach((nameObject) => {
-            if (nameObject.language.name == languageChosen) {
+            if (nameObject.language.name === languageChosen) {
               translatedName = nameObject.name
               var pokeName = document.getElementById("poke-name")
               pokeName.innerHTML =
@@ -100,9 +98,6 @@ Module.register("MMM-DailyPokemon", {
           var flavorTextDisplay = document.getElementById("flavor-text")
 
           if (flavorTextDisplay) {
-            function checkLanguage(obj) {
-              return obj.language.name == languageChosen
-            }
             // get first flavor text matching selected language
             var flavorTextObj = response.flavor_text_entries.find(
               (pokedexEntry) => pokedexEntry.language.name === languageChosen
@@ -120,7 +115,7 @@ Module.register("MMM-DailyPokemon", {
     }
 
     httpRequest.onreadystatechange = function () {
-      if (this.readyState == 4 && this.status == 200) {
+      if (this.readyState === 4 && this.status === 200) {
         console.log(JSON.parse(this.responseText))
         var responsePokemon = JSON.parse(this.responseText)
         Log.log(responsePokemon)
@@ -151,14 +146,14 @@ Module.register("MMM-DailyPokemon", {
     if (this.config.gbaMode) pokeName.style.fontFamily = "'pokegb'"
 
     // Font size/style modification
-    if (this.config.nameSize != 32) {
+    if (this.config.nameSize !== 32) {
       if (this.config.gbaMode) {
         pokeName.style.cssText =
           "font-size:" + this.config.nameSize + "px; font-family: 'pokegb';"
       } else {
         pokeName.style.cssText = "font-size:" + this.config.nameSize + "px;"
       }
-    } else if (this.config.nameSize == 32) {
+    } else if (this.config.nameSize === 32) {
       // Changing default size if gbaMode is enabled without size changes added
       if (this.config.gbaMode) {
         pokeName.style.cssText = "font-size: 22px; font-family: 'pokegb';"
@@ -213,7 +208,7 @@ Module.register("MMM-DailyPokemon", {
     pokeWrapper.appendChild(types)
     flexWrapper.appendChild(pokeWrapper)
 
-    statWrapper = document.createElement("div")
+    var statWrapper = document.createElement("div")
     //TODO - Add in a stats table
     if (this.config.stats) {
       var statTable = document.createElement("table")
